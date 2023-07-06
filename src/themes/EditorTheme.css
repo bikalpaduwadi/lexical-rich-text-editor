@@ -1,0 +1,23 @@
+.EditorTheme__textBold {
+  font-weight: bold;
+}
+.EditorTheme__textItalic {
+  font-style: italic;
+}
+.EditorTheme__textUnderline {
+  text-decoration: underline;
+}
+.EditorTheme__textStrikethrough {
+  text-decoration: line-through;
+}
+.EditorTheme__textUnderlineStrikethrough {
+  text-decoration: underline line-through;
+}
+.EditorTheme__textSubscript {
+  font-size: 0.8em;
+  vertical-align: sub !important;
+}
+.EditorTheme__textSuperscript {
+  font-size: 0.8em;
+  vertical-align: super;
+}
