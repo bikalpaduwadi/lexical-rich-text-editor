@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import { LinkNode, AutoLinkNode } from '@lexical/link';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 
@@ -31,7 +32,7 @@ function onError(error: any) {
 const Index = ({}) => {
   const initialConfig = {
     namespace: 'RichTextEditor',
-    nodes: [PillNode],
+    nodes: [PillNode, LinkNode, AutoLinkNode],
     theme: EditorTheme,
     onError,
   };

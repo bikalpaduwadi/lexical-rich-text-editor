@@ -9,3 +9,28 @@ i.italic {
 i.underline {
   background-image: url(/type-underline.svg);
 }
+
+.icon.font-color {
+  background-image: url(/font-color.svg);
+}
+
+.icon.bg-color {
+  background-image: url(/bg-color.svg);
+}
+
+.icon.font-family {
+  background-image: url(/font-family.svg);
+}
+
+i.chevron-down {
+  background-color: transparent;
+  background-size: contain;
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  background-image: url(/chevron-down.svg);
+}
+
+i.link {
+  background-image: url(/link.svg);
+}

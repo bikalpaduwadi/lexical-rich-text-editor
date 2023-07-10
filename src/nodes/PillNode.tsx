@@ -51,8 +51,6 @@ export class PillNode extends DecoratorNode<JSX.Element> {
   }
 
   static importDOM(): DOMConversionMap | null {
-    console.log('heeyyyy here i am 2............');
-
     return {
       span: (node: Node) => ({
         conversion: convertPillElement,
@@ -67,9 +65,8 @@ export class PillNode extends DecoratorNode<JSX.Element> {
 }
 
 function convertPillElement(domNode: Node): null | DOMConversionOutput {
-  console.log('heeyyyy here i am 11111............');
   if (domNode instanceof HTMLSpanElement) {
-    if (domNode.textContent === 'Hi there') {
+    if (domNode.textContent === 'Manager_Preferred_Name') {
       const node = $createPillNode(domNode.textContent || '');
       return { node };
     }

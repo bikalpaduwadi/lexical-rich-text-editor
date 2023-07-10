@@ -1,0 +1,12 @@
+.pill{
+  background-color: #ddf4f3;
+  border-radius: 100px;
+  color: #1ab8b2;
+  font-size: 14px;
+  line-height: 18px;
+  min-height: unset;
+  padding: 1px 8px;
+  text-transform: none;
+  vertical-align: initial;
+  white-space: nowrap;
+}

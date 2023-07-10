@@ -11,6 +11,8 @@ import ToolbarPlugin from './ToolbarPlugin';
 import useEditorState from '../hooks/useEditorState';
 import PillPlugin from './PillPlugin';
 import LoadInitialContent from './LoadInitialContent';
+import LinkPlugin from './LinkPlugin';
+import FloatingLinkEditorPlugin from './FloatingLinkEditorPlugin';
 
 interface EditorPluginsProps {}
 
@@ -56,6 +58,10 @@ const EditorPlugins: FC<EditorPluginsProps> = ({}) => {
         />
         <OnChangePlugin onChange={debounceChange} />
       </div>
+      <LinkPlugin />
+      {floatingAnchorElem && (
+        <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem} />
+      )}
       <PillPlugin />
       <ToolbarPlugin />
     </>
