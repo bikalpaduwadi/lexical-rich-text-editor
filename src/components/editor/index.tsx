@@ -9,6 +9,8 @@ import EditorPlugins from '../../plugins';
 import { PillNode } from '../../nodes/PillNode';
 import EditorTheme from '../../themes/EditorTheme';
 import ActionsPlugin from '../../plugins/ActionsPlugin';
+import { ExtentedTextNode } from '../../nodes/ExtentedTextNode';
+import { TextNode } from 'lexical';
 
 // Lexical React plugins are React components, which makes them
 // highly composable. Furthermore, you can lazy load plugins if
@@ -29,10 +31,14 @@ function onError(error: any) {
   throw error;
 }
 
-const Index = ({}) => {
+const Index = ({ }) => {
   const initialConfig = {
     namespace: 'RichTextEditor',
-    nodes: [PillNode, LinkNode, AutoLinkNode],
+    nodes:
+      [
+        ExtentedTextNode,
+        { replace: TextNode, with: (node: TextNode) => new ExtentedTextNode(node.__text, node.__key) },
+        PillNode, LinkNode, AutoLinkNode],
     theme: EditorTheme,
     onError,
   };
