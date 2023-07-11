@@ -7,8 +7,9 @@ import {
   TextNode,
   SerializedTextNode
 } from 'lexical';
+import { $isPillNode } from './PillNode';
 
-export class ExtentedTextNode extends TextNode {
+export class ExtendedTextNode extends TextNode {
   constructor(text: string, key?: NodeKey) {
     super(text, key);
   }
@@ -17,18 +18,19 @@ export class ExtentedTextNode extends TextNode {
     return 'extended-text';
   }
 
-  static clone(node: ExtentedTextNode): ExtentedTextNode {
-    return new ExtentedTextNode(node.__text, node.__key);
+  static clone(node: ExtendedTextNode): ExtendedTextNode {
+    return new ExtendedTextNode(node.__text, node.__key);
   }
 
   static importDOM(): DOMConversionMap | null {
     const importers = TextNode.importDOM();
     return {
       ...importers,
-      span: () => ({
-        conversion: patchStyleConversion(importers?.span),
-        priority: 4
-      }),
+      span: (node) => (
+        node.id !== 'custom-node' ? {
+          conversion: patchStyleConversion(importers?.span),
+          priority: 4
+        } : null),
       strong: () => ({
         conversion: patchStyleConversion(importers?.strong),
         priority: 4
@@ -39,20 +41,13 @@ export class ExtentedTextNode extends TextNode {
       })
     };
   }
-
-  static importJSON(serializedNode: SerializedTextNode): TextNode {
-    return TextNode.importJSON(serializedNode);
-  }
-
-  exportJSON(): SerializedTextNode {
-    return super.exportJSON();
-  }
 }
 
 function patchStyleConversion(
   originalDOMConverter?: (node: HTMLElement) => DOMConversion | null
 ): (node: HTMLElement) => DOMConversionOutput | null {
   return (node) => {
+    const nodeClass = node.className
 
     const original = originalDOMConverter?.(node);
     if (!original) {
@@ -80,6 +75,7 @@ function patchStyleConversion(
             .filter((value) => value != null)
             .join('; ');
           if (style.length) {
+            // result.set
             return result.setStyle(style);
           }
         }

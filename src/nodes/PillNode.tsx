@@ -46,6 +46,7 @@ export class PillNode extends DecoratorNode<JSX.Element> {
 
   exportDOM(): DOMExportOutput {
     const element = document.createElement('span');
+    element.id = 'custom-node';
     element.innerHTML = this.__displayText;
     return { element };
   }
@@ -54,7 +55,7 @@ export class PillNode extends DecoratorNode<JSX.Element> {
     return {
       span: (node: Node) => ({
         conversion: convertPillElement,
-        priority: 4,
+        priority: 4
       }),
     };
   }

@@ -9,7 +9,7 @@ import EditorPlugins from '../../plugins';
 import { PillNode } from '../../nodes/PillNode';
 import EditorTheme from '../../themes/EditorTheme';
 import ActionsPlugin from '../../plugins/ActionsPlugin';
-import { ExtentedTextNode } from '../../nodes/ExtentedTextNode';
+import { ExtendedTextNode } from '../../nodes/ExtendedTextNode';
 import { TextNode } from 'lexical';
 
 // Lexical React plugins are React components, which makes them
@@ -36,8 +36,8 @@ const Index = ({ }) => {
     namespace: 'RichTextEditor',
     nodes:
       [
-        ExtentedTextNode,
-        { replace: TextNode, with: (node: TextNode) => new ExtentedTextNode(node.__text, node.__key) },
+        ExtendedTextNode,
+        { replace: TextNode, with: (node: TextNode) => new ExtendedTextNode(node.__text, node.__key) },
         PillNode, LinkNode, AutoLinkNode],
     theme: EditorTheme,
     onError,
