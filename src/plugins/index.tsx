@@ -14,9 +14,9 @@ import LoadInitialContent from './LoadInitialContent';
 import LinkPlugin from './LinkPlugin';
 import FloatingLinkEditorPlugin from './FloatingLinkEditorPlugin';
 
-interface EditorPluginsProps {}
+interface EditorPluginsProps { }
 
-const EditorPlugins: FC<EditorPluginsProps> = ({}) => {
+const EditorPlugins: FC<EditorPluginsProps> = ({ }) => {
   const { setValue } = useEditorState();
   const [editor] = useLexicalComposerContext();
 
@@ -32,8 +32,6 @@ const EditorPlugins: FC<EditorPluginsProps> = ({}) => {
   const onChange = (editorState: any) => {
     editorState.read(() => {
       const htmlString = $generateHtmlFromNodes(editor, null);
-
-      console.log(htmlString);
 
       setValue(htmlString);
     });

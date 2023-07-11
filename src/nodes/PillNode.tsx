@@ -6,9 +6,15 @@ import {
   EditorConfig,
   LexicalNode,
   NodeKey,
+  SerializedLexicalNode,
+  Spread,
 } from 'lexical';
 
 import PillComponent from './PillComponent';
+
+type SerializedPillNode = Spread<{
+  displayText: string;
+}, SerializedLexicalNode>
 
 export class PillNode extends DecoratorNode<JSX.Element> {
   __displayText: string;
@@ -57,6 +63,14 @@ export class PillNode extends DecoratorNode<JSX.Element> {
         conversion: convertPillElement,
         priority: 4
       }),
+    };
+  }
+
+  exportJSON(): SerializedPillNode {
+    return {
+      displayText: this.__displayText,
+      type: "pill",
+      version: 1,
     };
   }
 

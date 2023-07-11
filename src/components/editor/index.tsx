@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 
 import { LinkNode, AutoLinkNode } from '@lexical/link';
+import { } from '@lexical/clipboard'
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 
 // import EditorPlugins from './EditorPlugins';
@@ -50,6 +52,7 @@ const Index = ({ }) => {
         <EditorPlugins />
         <MyCustomAutoFocusPlugin />
       </div>
+      <HistoryPlugin />
     </LexicalComposer>
   );
 };
