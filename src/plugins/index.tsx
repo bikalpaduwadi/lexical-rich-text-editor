@@ -1,5 +1,5 @@
-import { FC, useState } from 'react';
 import { debounce } from 'lodash';
+import { FC, useState } from 'react';
 import { $generateHtmlFromNodes } from '@lexical/html';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
@@ -7,16 +7,18 @@ import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 
+import PillPlugin from './PillPlugin';
+import LinkPlugin from './LinkPlugin';
+import ImagePlugin from './ImagePlugin';
 import ToolbarPlugin from './ToolbarPlugin';
 import useEditorState from '../hooks/useEditorState';
-import PillPlugin from './PillPlugin';
 import LoadInitialContent from './LoadInitialContent';
-import LinkPlugin from './LinkPlugin';
+import DragDropPastePlugin from './DragDropPastePlugin';
 import FloatingLinkEditorPlugin from './FloatingLinkEditorPlugin';
 
-interface EditorPluginsProps { }
+interface EditorPluginsProps {}
 
-const EditorPlugins: FC<EditorPluginsProps> = ({ }) => {
+const EditorPlugins: FC<EditorPluginsProps> = ({}) => {
   const { setValue } = useEditorState();
   const [editor] = useLexicalComposerContext();
 
@@ -60,6 +62,8 @@ const EditorPlugins: FC<EditorPluginsProps> = ({ }) => {
       {floatingAnchorElem && (
         <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem} />
       )}
+      <DragDropPastePlugin />
+      <ImagePlugin />
       <PillPlugin />
       <ToolbarPlugin />
     </>

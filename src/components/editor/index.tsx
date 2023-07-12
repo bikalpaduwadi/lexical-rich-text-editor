@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 
+import { TextNode } from 'lexical';
+import {} from '@lexical/clipboard';
 import { LinkNode, AutoLinkNode } from '@lexical/link';
-import { } from '@lexical/clipboard'
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
@@ -9,10 +10,10 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 // import EditorPlugins from './EditorPlugins';
 import EditorPlugins from '../../plugins';
 import { PillNode } from '../../nodes/PillNode';
+import { ImageNode } from '../../nodes/ImageNode';
 import EditorTheme from '../../themes/EditorTheme';
 import ActionsPlugin from '../../plugins/ActionsPlugin';
 import { ExtendedTextNode } from '../../nodes/ExtendedTextNode';
-import { TextNode } from 'lexical';
 
 // Lexical React plugins are React components, which makes them
 // highly composable. Furthermore, you can lazy load plugins if
@@ -33,14 +34,20 @@ function onError(error: any) {
   throw error;
 }
 
-const Index = ({ }) => {
+const Index = ({}) => {
   const initialConfig = {
     namespace: 'RichTextEditor',
-    nodes:
-      [
-        ExtendedTextNode,
-        { replace: TextNode, with: (node: TextNode) => new ExtendedTextNode(node.__text, node.__key) },
-        PillNode, LinkNode, AutoLinkNode],
+    nodes: [
+      ExtendedTextNode,
+      {
+        replace: TextNode,
+        with: (node: TextNode) => new ExtendedTextNode(node.__text, node.__key),
+      },
+      PillNode,
+      LinkNode,
+      ImageNode,
+      AutoLinkNode,
+    ],
     theme: EditorTheme,
     onError,
   };
