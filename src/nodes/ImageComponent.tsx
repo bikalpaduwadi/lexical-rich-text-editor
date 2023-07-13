@@ -45,6 +45,7 @@ const ImageComponent: FC<ImageComponentProps> = ({
   const [isSelected, setSelected, clearSelection] =
     useLexicalNodeSelection(nodeKey);
   const [isResizing, setIsResizing] = useState<boolean>(false);
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
   const [editor] = useLexicalComposerContext();
   const [selection, setSelection] = useState<
     RangeSelection | NodeSelection | GridSelection | null
@@ -177,6 +178,7 @@ const ImageComponent: FC<ImageComponentProps> = ({
               : ''
           }
           src={src}
+          onLoad={() => setIsImageLoaded(true)}
           alt={altText}
           ref={imageRef}
           style={{
@@ -186,7 +188,7 @@ const ImageComponent: FC<ImageComponentProps> = ({
           }}
           draggable='false'
         />
-        {resizable && $isNodeSelection(selection) && isFocused && (
+        {resizable && $isNodeSelection(selection) && isFocused && isImageLoaded && (
           <ImageResizer
             editor={editor}
             imageRef={imageRef}
