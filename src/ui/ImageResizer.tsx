@@ -1,5 +1,6 @@
 import { FC, useRef } from 'react';
 import { LexicalEditor } from 'lexical';
+import './ImageResizer.css';
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
@@ -58,8 +59,8 @@ const ImageResizer: FC<ImageResizerProps> = ({
   const maxWidthContainer = maxWidth
     ? maxWidth
     : editorRootElement !== null
-    ? editorRootElement.getBoundingClientRect().width - 20
-    : 100;
+      ? editorRootElement.getBoundingClientRect().width - 20
+      : 100;
   const maxHeightContainer =
     editorRootElement !== null
       ? editorRootElement.getBoundingClientRect().height - 20

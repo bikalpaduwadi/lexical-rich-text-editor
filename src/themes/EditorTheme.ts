@@ -13,6 +13,7 @@ const EditorTheme: EditorThemeClasses = {
     underline: 'EditorTheme__textUnderline',
     underlineStrikethrough: 'EditorTheme__textUnderlineStrikethrough',
   },
+  image: 'editor-image',
 };
 
 export default EditorTheme;
