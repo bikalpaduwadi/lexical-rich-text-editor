@@ -16,12 +16,16 @@ import {
 import FontDropDown from './FontDropDown';
 import { sanitizeUrl } from '../../utils/url';
 import { INSERT_PILL_COMMAND } from '../PillPlugin';
+import { $createPillNode } from '../../nodes/PillNode';
+import PopOverContent from '../../components/PopOverContent';
 import { getSelectedNode } from '../../utils/getSelectedNode';
 import DropDownColorPicker from '../../ui/DropDownColorPicker';
 
-interface ToolbarPluginProps {}
+interface ToolbarPluginProps {
+  ModalWrapper: any
+ }
 
-const ToolbarPlugin: FC<ToolbarPluginProps> = ({}) => {
+const ToolbarPlugin: FC<ToolbarPluginProps> = (props) => {
   const [editor] = useLexicalComposerContext();
 
   const [isBold, setIsBold] = useState(false);
@@ -137,6 +141,27 @@ const ToolbarPlugin: FC<ToolbarPluginProps> = ({}) => {
     }
   }, [editor, isLink]);
 
+  const handlePopOverChange = (value: any) => {
+    console.log(value, 'i am value')
+    editor.update(() => {
+      const selection = $getSelection();
+      if (selection !== null) {
+        selection.insertNodes([$createPillNode(value)]);
+      }
+    });
+  }
+
+  const handleInsertData = (value: any) => {
+    console.log('hello world')
+
+    editor.update(() => {
+      const selection = $getSelection();
+      if (selection !== null) {
+        selection.insertNodes([$createPillNode(value)]);
+      }
+    });
+  }
+
   return (
     <div className='toolbar'>
       <button
@@ -214,6 +239,8 @@ const ToolbarPlugin: FC<ToolbarPluginProps> = ({}) => {
       >
         <i className='format link' />
       </button>
+      <PopOverContent value='guardians' onSelect={handlePopOverChange} />
+      {props.ModalWrapper({ handleInsertData })}
       <FontDropDown
         disabled={false}
         style={'font-family'}

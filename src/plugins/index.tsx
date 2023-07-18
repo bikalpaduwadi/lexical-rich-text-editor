@@ -16,9 +16,11 @@ import LoadInitialContent from './LoadInitialContent';
 import DragDropPastePlugin from './DragDropPastePlugin';
 import FloatingLinkEditorPlugin from './FloatingLinkEditorPlugin';
 
-interface EditorPluginsProps {}
+interface EditorPluginsProps {
+  ModalWrapper: any
+}
 
-const EditorPlugins: FC<EditorPluginsProps> = ({}) => {
+const EditorPlugins: FC<EditorPluginsProps> = (props) => {
   const { setValue } = useEditorState();
   const [editor] = useLexicalComposerContext();
 
@@ -65,7 +67,7 @@ const EditorPlugins: FC<EditorPluginsProps> = ({}) => {
       <DragDropPastePlugin />
       <ImagePlugin />
       <PillPlugin />
-      <ToolbarPlugin />
+      <ToolbarPlugin ModalWrapper={props.ModalWrapper} />
     </>
   );
 };

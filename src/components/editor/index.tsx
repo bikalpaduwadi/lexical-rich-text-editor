@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { TextNode } from 'lexical';
-import {} from '@lexical/clipboard';
+import { } from '@lexical/clipboard';
 import { LinkNode, AutoLinkNode } from '@lexical/link';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
@@ -34,7 +34,11 @@ function onError(error: any) {
   throw error;
 }
 
-const Index = ({}) => {
+interface EditorProps {
+  ModalWrapper: any
+}
+
+const Index: React.FC<EditorProps> = (props) => {
   const initialConfig = {
     namespace: 'RichTextEditor',
     nodes: [
@@ -52,15 +56,22 @@ const Index = ({}) => {
     onError,
   };
 
+  const handleInsertData = () => {
+    console.log('hello world')
+  }
+
   return (
-    <LexicalComposer initialConfig={initialConfig}>
-      <ActionsPlugin />
-      <div className='editor-shell'>
-        <EditorPlugins />
-        <MyCustomAutoFocusPlugin />
-      </div>
-      <HistoryPlugin />
-    </LexicalComposer>
+    <>
+      {props.ModalWrapper({ handleInsertData })}
+      <LexicalComposer initialConfig={initialConfig}>
+        <ActionsPlugin />
+        <div className='editor-shell'>
+          <EditorPlugins ModalWrapper={props.ModalWrapper} />
+          <MyCustomAutoFocusPlugin />
+        </div>
+        <HistoryPlugin />
+      </LexicalComposer>
+    </>
   );
 };
 
